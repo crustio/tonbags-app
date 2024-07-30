@@ -23,7 +23,7 @@ const Files = () => {
 
   const getCurrentUserInfo = useCallback(async () => {
     if (!userFriendlyAddress) return
-    const { status, data = { success: false, data: [] }, } = await axios(`http://localhost:3010/users?address=${userFriendlyAddress}`, {})
+    const { status, data = { success: false, data: [] }, } = await axios(`https://tonbags-api.crust.network/users?address=${userFriendlyAddress}`, {})
     if (status === 200 && data.success === true) {
       setUserData([])
 
@@ -31,7 +31,6 @@ const Files = () => {
     }
   }, [userFriendlyAddress])
 
-  console.log('resresres', userData,);
 
 
   useEffect(() => {
@@ -39,14 +38,7 @@ const Files = () => {
 
   }, [getCurrentUserInfo])
 
-
-
-
-
-
   const totalSize = calculateTotalFileSize(userData, 'fileSize',);
-
-
 
 
 

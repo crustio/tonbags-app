@@ -1,4 +1,7 @@
 {
   "url": "https://mini-app.crust.network/",
-  "name": "TGBags"
+  "name": "TGBags",
+  "iconUrl": "https://mini-app.crust.network/text-icon.png",
+  "termsOfUseUrl": "https://mini-app.crust.network/terms-of-use.txt",
+  "privacyPolicyUrl": "https://mini-app.crust.network/privacy-policy.txt"
 }
