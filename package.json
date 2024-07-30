@@ -1,0 +1,51 @@
+{
+  "name": "TG-bags",
+  "version": "1.0.0",
+  "scripts": {
+    "compile": "npx rimraf dist && tsc",
+    "run": "node dist/ton-connect/bot.js",
+    "start:redis": "docker run -d -p 127.0.0.1:6379:6379 redis/redis-stack-server:latest",
+    "start:daemon": "pm2 start --name tgbot ./dist/main.js",
+    "stop:daemon": "pm2 stop tgbot && pm2 delete tgbot",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tonconnect/sdk": "^3.0.0-beta.1",
+    "@tonconnect/ui-react": "^2.0.6",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "node-telegram-bot-api": "^0.61.0",
+    "qrcode": "^1.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "redis": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node-telegram-bot-api": "^0.61.4",
+    "@types/qrcode": "^1.5.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "pm2": "^5.2.2",
+    "postcss": "^8",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.1"
+  }
+}
