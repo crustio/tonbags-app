@@ -98,7 +98,7 @@ type DataItem = {
     [key: string]: number | string;
 };
 
-export function calculateTotalFileSize<T extends DataItem>(data: T[], key: string): string | void {
+export function calculateTotalFileSize<T extends DataItem>(data: T[], key: string) {
     if (data && data.length <= 0 && !key) return;
     let totalSize = 0;
     data.forEach(item => {

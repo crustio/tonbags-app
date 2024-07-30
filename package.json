@@ -2,11 +2,6 @@
   "name": "TG-bags",
   "version": "1.0.0",
   "scripts": {
-    "compile": "npx rimraf dist && tsc",
-    "run": "node dist/ton-connect/bot.js",
-    "start:redis": "docker run -d -p 127.0.0.1:6379:6379 redis/redis-stack-server:latest",
-    "start:daemon": "pm2 start --name tgbot ./dist/main.js",
-    "stop:daemon": "pm2 stop tgbot && pm2 delete tgbot",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
