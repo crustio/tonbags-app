@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import '../App.css'
-import { TonConnectButton, useTonAddress, useTonWallet } from '@tonconnect/ui-react'
+import { TonConnectButton, useTonAddress } from '@tonconnect/ui-react'
 import axios from 'axios'
 import ATable from '../components/ATable'
-import { calculateTotalFileSize, formatBytes } from '../utils/utils';
+import { calculateTotalFileSize } from '../utils/utils';
 
 export type responseData = {
   address: string;
