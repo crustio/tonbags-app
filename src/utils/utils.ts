@@ -30,3 +30,12 @@ export function calculateTotalFileSize<T extends DataItem>(data: T[], key: strin
     });
     return formatBytes(totalSize);
 }
+
+export const truncateMiddle = (str: string, frontLen: number, endLen: number) => {
+    if (str.length <= frontLen + endLen) {
+        return str;
+    }
+    const start = str.slice(0, frontLen);
+    const end = str.slice(-endLen);
+    return `${start}...${end}`;
+};

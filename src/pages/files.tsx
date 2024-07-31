@@ -53,7 +53,7 @@ const Files = () => {
             <div className=' text-xl text-left text-black '>
               My FIles
             </div>
-            <div className=' flex w-full gap-5 ml-[5px] mt-5 text-black'>
+            <div className=' flex w-full gap-5  mt-5 text-black'>
               <div>
                 Files stored: {totalSize}
               </div>
@@ -62,7 +62,7 @@ const Files = () => {
               </div>
 
             </div>
-            <div className='ml-[5px] mt-5 '>
+            <div className='mt-5 '>
               <ATable
                 header={[{ name: 'Name' }, { name: 'CID', }, { name: 'Size', }, { name: 'UploadDate', }, { name: 'From' }]}
                 data={userData}

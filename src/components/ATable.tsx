@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { responseData } from "../pages/files";
-import { formatBytes, timestampToDateTime } from "../utils/utils";
+import { formatBytes, timestampToDateTime, truncateMiddle } from "../utils/utils";
 type ATableProps = {
     header: { name: string }[]
     data: responseData[]
@@ -19,7 +19,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [] }) => {
             {data.length > 0 && data.map((item, i) => {
                 return <tr className="bg-[#FFFFFF] border-b" key={`col_${i}`}>
                     <td>{item.fileName}</td>
-                    <td>{item.id}</td>
+                    <td>{truncateMiddle(item.id, 6, 6)}</td>
                     <td>{formatBytes(Number(item.fileSize))}</td>
                     <td>{timestampToDateTime(Number(item.uploadDate))}</td>
                     <td>{item.from}</td>
