@@ -50,10 +50,10 @@ const Files = () => {
       {
         userFriendlyAddress && (
           <div className=' border-[#snow]  my-5'>
-            <div className=' text-3xl text-left text-black '>
+            <div className=' text-xl text-left text-black '>
               My FIles
             </div>
-            <div className=' flex w-full gap-10 ml-5 mt-5 text-black'>
+            <div className=' flex w-full gap-5 ml-[5px] mt-5 text-black'>
               <div>
                 Files stored: {totalSize}
               </div>
@@ -62,7 +62,7 @@ const Files = () => {
               </div>
 
             </div>
-            <div className='ml-5 mt-5 '>
+            <div className='ml-[5px] mt-5 '>
               <ATable
                 header={[{ name: 'Name' }, { name: 'CID', }, { name: 'Size', }, { name: 'UploadDate', }, { name: 'From' }]}
                 data={userData}
