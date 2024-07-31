@@ -10,14 +10,14 @@ const ATable: FC<ATableProps> = ({ header = [], data = [] }) => {
     return <>
 
         <table>
-            <tr className="">
+            <tr className=" bg-[#FAFAFA] rounded-lg h-[50px] text-xl border-b-[#FFFFFF] ">
                 {header.map((item, i) => {
                     return <th key={`table_${i}`} className=" w-[200px]">{item.name}</th>
                 })}
             </tr>
 
             {data.length > 0 && data.map((item, i) => {
-                return <tr key={`col_${i}`}>
+                return <tr className="bg-[#FFFFFF] border-b text-base" key={`col_${i}`}>
                     <td>{item.fileName}</td>
                     <td>{item.id}</td>
                     <td>{formatBytes(Number(item.fileSize))}</td>

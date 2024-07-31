@@ -49,22 +49,22 @@ const Files = () => {
       </div>
       {
         userFriendlyAddress && (
-          <div>
-            <div className=' text-3xl text-left'>
+          <div className=' border-[#snow] border px-5 py-5 my-5'>
+            <div className=' text-3xl text-left text-black '>
               My FIles
             </div>
-            <div className=' flex w-full gap-10 ml-5 mt-5'>
+            <div className=' flex w-full gap-10 ml-5 mt-5 text-black'>
               <div>
                 Files stored: {totalSize}
               </div>
               <div>
-                space usage: 233 B
+                space usage: 20 MB
               </div>
 
             </div>
             <div className='ml-5 mt-5 '>
               <ATable
-                header={[{ name: 'Name' }, { name: 'CID', }, { name: 'Size', }, { name: 'uploadDate', }, { name: 'From' }]}
+                header={[{ name: 'Name' }, { name: 'CID', }, { name: 'Size', }, { name: 'UploadDate', }, { name: 'From' }]}
                 data={userData}
               />
 
