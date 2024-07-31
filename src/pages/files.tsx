@@ -64,7 +64,7 @@ const Files = () => {
             </div>
             <div className='mt-5 '>
               <ATable
-                header={[{ name: 'Name' }, { name: 'CID', }, { name: 'Size', }, { name: 'UploadDate', }, { name: 'From' }]}
+                header={[{ name: 'Name' }, { name: 'bagID', }, { name: 'Size', }, { name: 'UploadDate' }, { name: 'From' }]}
                 data={userData}
               />
 
