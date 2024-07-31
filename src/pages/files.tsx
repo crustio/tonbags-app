@@ -49,7 +49,7 @@ const Files = () => {
       </div>
       {
         userFriendlyAddress && (
-          <div className=' border-[#snow] border px-5 py-5 my-5'>
+          <div className=' border-[#snow]  my-5'>
             <div className=' text-3xl text-left text-black '>
               My FIles
             </div>

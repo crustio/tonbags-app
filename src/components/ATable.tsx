@@ -9,7 +9,7 @@ type ATableProps = {
 const ATable: FC<ATableProps> = ({ header = [], data = [] }) => {
     return <>
 
-        <table>
+        <table className=" overflow-auto">
             <tr className=" bg-[#FAFAFA] rounded-lg h-[50px] border-b-[#FFFFFF] ">
                 {header.map((item, i) => {
                     return <th key={`table_${i}`} className=" w-[200px]">{item.name}</th>
