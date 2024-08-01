@@ -1,8 +1,8 @@
+import { TonConnectButton, toUserFriendlyAddress, useTonWallet } from '@tonconnect/ui-react';
+import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import '../App.css'
-import { TonConnectButton, useTonAddress } from '@tonconnect/ui-react'
-import axios from 'axios'
-import ATable from '../components/ATable'
+import '../App.css';
+import ATable from '../components/ATable';
 import { calculateTotalFileSize } from '../utils/utils';
 
 export type responseData = {
@@ -17,9 +17,11 @@ export type responseData = {
 
 const Files = () => {
   const [userData, setUserData] = useState<responseData[]>([])
+  const tonAdd = useTonWallet();
+  const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
 
-  const userFriendlyAddress = useTonAddress();
+
 
   const getCurrentUserInfo = useCallback(async () => {
     if (!userFriendlyAddress) return
@@ -51,20 +53,20 @@ const Files = () => {
         userFriendlyAddress && (
           <div className=' border-[#snow]  my-5'>
             <div className=' text-xl text-left text-black '>
-              My FIles
+              My Files
             </div>
             <div className=' flex w-full gap-5  mt-5 text-black'>
               <div>
                 Files stored: {totalSize}
               </div>
               <div>
-                space usage: 20 MB
+                Space usage
               </div>
 
             </div>
             <div className='mt-5 '>
               <ATable
-                header={[{ name: 'Name' }, { name: 'bagID', }, { name: 'Size', }, { name: 'UploadDate' }, { name: 'From' }]}
+                header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'UploadDate' }, { name: 'From' }]}
                 data={userData}
               />
 
