@@ -1,4 +1,4 @@
-import { HTMLAttributes, useMemo } from "react";
+import { useMemo } from "react";
 import classnames from "classnames";
 import {
   FiChevronLeft,
@@ -10,6 +10,7 @@ export interface Props {
   total: number;
   pgSize: number;
   pgNum: number;
+  className?: string
   onChange?: (num: number, count?: number) => void;
 }
 
