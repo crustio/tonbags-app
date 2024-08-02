@@ -19,7 +19,7 @@ export const formatBytes = (bytes: number) => {
 };
 
 type DataItem = {
-    [key: string]: number | string;
+    [key: string]: number | string | null;
 };
 
 export function calculateTotalFileSize<T extends DataItem>(data: T[], key: string) {

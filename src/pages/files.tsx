@@ -3,9 +3,16 @@ import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import '../App.css';
 import ATable from '../components/ATable';
-import { calculateTotalFileSize } from '../utils/utils';
+import { Pagination } from '../components/Pagination';
 
-export type responseData = {
+export type pagination = {
+  "page": number,
+  "pageSize": number,
+  "totalRecords": number,
+  "totalPages": number
+}
+
+export type data = {
   address: string;
   file: string;
   fileName: string;
@@ -13,25 +20,32 @@ export type responseData = {
   from: string;
   id: string;
   uploadDate: string;
-};
+}
+
+export type responseData = {
+  data: data[]
+  countFileSize: number
+  pagination: pagination
+
+}
 
 const Files = () => {
-  const [userData, setUserData] = useState<responseData[]>([])
+  const [userData, setUserData] = useState<responseData>()
   const tonAdd = useTonWallet();
-  const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
+  const [pgNum, setPgNum] = useState(1)
 
+  const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
 
 
   const getCurrentUserInfo = useCallback(async () => {
     if (!userFriendlyAddress) return
-    const { status, data = { success: false, data: [] }, } = await axios(`https://tonbags-api.crust.network/users?address=${userFriendlyAddress}`, {})
+    const { status, data = { success: false, data: [] }, } = await axios(`https://tonbags-api.crust.network/users?address=${userFriendlyAddress}&page=${pgNum}&pageSize=10`)
     if (status === 200 && data.success === true) {
-      setUserData([])
-
-      setUserData(data.data)
+      setUserData({} as responseData)
+      setUserData(data)
     }
-  }, [userFriendlyAddress])
+  }, [userFriendlyAddress, pgNum])
 
 
 
@@ -40,46 +54,55 @@ const Files = () => {
 
   }, [getCurrentUserInfo])
 
-  const totalSize = calculateTotalFileSize(userData, 'fileSize',);
-
 
 
   return (
-    <>
+    <div className=' mb-40'>
       <div className=' flex justify-center'>
         <TonConnectButton />
       </div>
       {
         userFriendlyAddress && (
-          <div className=' border-[#snow]  my-5'>
-            <div className=' text-xl text-left text-black '>
-              My Files
-            </div>
-            <div className=' flex w-full gap-5  mt-5 text-black'>
-              <div>
-                Files stored: {totalSize}
-              </div>
-              <div>
-                Space usage
-              </div>
-
-            </div>
-            <div className='mt-5 '>
-              <ATable
-                header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'UploadDate' }, { name: 'From' }]}
-                data={userData}
-              />
-
-            </div>
+          <div className=' border-[#snow]  my-5  '>
             <div>
+              <div className=' text-xl text-left text-black  '>
+                My Files
+              </div>
+              <div className=' flex w-full gap-5  mt-5 text-black'>
+                <div>
+                  Files Stored: {userData?.pagination?.totalRecords || ''}
+                </div>
+                <div>
+                  Space Usage: {userData?.countFileSize}
+                </div>
 
+              </div>
+              <div className='mt-5   mo:w-[350px]  overflow-auto '>
+                <ATable
+                  header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }]}
+                  data={userData?.data}
+                />
+
+
+              </div>
+              <div className=' mt-10'>
+                <Pagination
+                  onChange={(num: number, count?: number) => {
+                    setPgNum(num);
+                    if (num === 1 || !count) return;
+                  }}
+                  total={userData?.pagination?.totalRecords || 0}
+                  pgSize={userData?.pagination?.pageSize || 1}
+                  pgNum={userData?.pagination?.page || 10} />
+
+              </div>
             </div>
 
           </div>
         )
       }
 
-    </>
+    </div>
   )
 }
 
