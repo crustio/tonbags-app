@@ -19,6 +19,7 @@ export type data = {
   fileSize: string;
   from: string;
   id: string;
+  bagId: string;
   uploadDate: string;
 }
 
@@ -57,7 +58,7 @@ const Files = () => {
 
 
   return (
-    <div className=' mb-40'>
+    <div className=' mb-[100px]'>
       <div className=' flex justify-center'>
         <TonConnectButton />
       </div>
