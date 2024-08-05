@@ -57,6 +57,7 @@ export const Pagination = (p: Props) => {
     ];
   }, [count, pgNum]);
   const doNext = () => {
+
     onChange && pgNum < count && onChange(pgNum + 1, count);
   };
   const doFirst = () => {

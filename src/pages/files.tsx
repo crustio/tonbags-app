@@ -93,8 +93,8 @@ const Files = () => {
                     if (num === 1 || !count) return;
                   }}
                   total={userData?.pagination?.totalRecords || 0}
-                  pgSize={userData?.pagination?.pageSize || 1}
-                  pgNum={userData?.pagination?.page || 10} />
+                  pgSize={Number(userData?.pagination.pageSize) || 1}
+                  pgNum={Number(userData?.pagination.page) || 10} />
 
               </div>
             </div>
