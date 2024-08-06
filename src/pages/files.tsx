@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import '../App.css';
 import ATable from '../components/ATable';
 import { Pagination } from '../components/Pagination';
+import { getCurrentUrlParams } from '../utils/utils';
 
 export type pagination = {
   "page": number,
@@ -35,6 +36,7 @@ const Files = () => {
   // const tonAdd = useTonWallet();
   const [pgNum, setPgNum] = useState(1)
   const userFriendlyAddress = useTonAddress();
+  const add = getCurrentUrlParams()
 
 
 
@@ -72,6 +74,8 @@ const Files = () => {
             <div>
               <div className=' text-xl text-left text-black  '>
                 My Files
+                {`${add.address!}`}
+
               </div>
               <div className=' flex w-full gap-5  mt-5 text-black'>
                 <div>

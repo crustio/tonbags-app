@@ -39,3 +39,19 @@ export const truncateMiddle = (str: string, frontLen: number, endLen: number) =>
     const end = str.slice(-endLen);
     return `${start}...${end}`;
 };
+
+export function getCurrentUrlParams() {
+    const url = window.location.href;
+
+    const urlObj = new URL(url);
+
+    const params = new URLSearchParams(urlObj.search);
+
+    const paramsObj: DataItem = {};
+
+    params.forEach((value, key) => {
+        paramsObj[key] = value;
+    });
+
+    return paramsObj;
+}
