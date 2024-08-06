@@ -1,3 +1,5 @@
+import { toast } from 'sonner';
+
 export const timestampToDateTime = (timestamp: number) => {
     const date = new Date((timestamp * 1000) / 1000);
 
@@ -19,7 +21,7 @@ export const formatBytes = (bytes: number) => {
 };
 
 type DataItem = {
-    [key: string]: number | string | null;
+    [key: string]: string | null;
 };
 
 export function calculateTotalFileSize<T extends DataItem>(data: T[], key: string) {
@@ -32,6 +34,7 @@ export function calculateTotalFileSize<T extends DataItem>(data: T[], key: strin
 }
 
 export const truncateMiddle = (str: string, frontLen: number, endLen: number) => {
+    if (!str) return;
     if (str.length <= frontLen + endLen) {
         return str;
     }
@@ -55,3 +58,13 @@ export function getCurrentUrlParams() {
 
     return paramsObj;
 }
+
+export const copyTextToClipboard = async (text: string) => {
+    if (!text) return;
+    try {
+        await navigator.clipboard.writeText(text);
+        toast.success('Copy successfully!');
+    } catch (err) {
+        console.error('Unable to copy text to clipboard:', err);
+    }
+};
