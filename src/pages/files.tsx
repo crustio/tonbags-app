@@ -43,21 +43,20 @@ const Files = () => {
 
   // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
-  const getCurrentUserInfo = useCallback(async () => {
+  const getCurrentUserInfo = async () => {
     if (!userFriendlyAddress || !add?.address) return
     const { status, data = { success: false, data: [] }, } = await axios(`https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`)
     if (status === 200 && data.success === true) {
       setUserData({} as responseData)
       setUserData(data)
     }
-  }, [userFriendlyAddress, add?.address, pgNum])
+  }
 
 
 
   useEffect(() => {
     getCurrentUserInfo()
-
-  }, [getCurrentUserInfo])
+  }, [userFriendlyAddress, add?.address, pgNum])
 
 
 
