@@ -1,4 +1,4 @@
-import { TonConnectButton, toUserFriendlyAddress, useTonWallet } from '@tonconnect/ui-react';
+import { TonConnectButton, toUserFriendlyAddress, useTonAddress, useTonWallet } from '@tonconnect/ui-react';
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import '../App.css';
@@ -32,10 +32,14 @@ export type responseData = {
 
 const Files = () => {
   const [userData, setUserData] = useState<responseData>()
-  const tonAdd = useTonWallet();
+  // const tonAdd = useTonWallet();
   const [pgNum, setPgNum] = useState(1)
+  const userFriendlyAddress = useTonAddress();
 
-  const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
+
+
+
+  // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
 
 
