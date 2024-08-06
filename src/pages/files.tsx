@@ -69,7 +69,7 @@ const Files = () => {
       {
         // userFriendlyAddress && (
         <div className=' border-[#snow]  my-5  '>
-          <div className=' text-black text-xl text-left'>
+          <div className=' text-black text-lg text-left'>
             My Files
 
             {add?.address && <div className='flex items-center gap-5 mt-5'>
@@ -103,7 +103,7 @@ const Files = () => {
 
 
             </div>
-            <div className=' mt-10'>
+            <div className=' mt-[30px]'>
               <Pagination
                 onChange={(num: number, count?: number) => {
                   setPgNum(num);

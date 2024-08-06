@@ -12,14 +12,14 @@ const ATable: FC<ATableProps> = ({ header = [], data = [] }) => {
         <table className=" overflow-auto mb-[5px]  ">
             <tr className=" bg-[#FAFAFA] rounded-lg h-[50px] w-[200px] border-b-[#FFFFFF]  ">
                 {header.map((item, i) => {
-                    return <th key={`table_${i}`} className={`${data.length && ' w-full'}`}>{item.name}</th>
+                    return <th key={`table_${i}`} className={`${data.length && ' w-full pl-1'}`}>{item.name}</th>
                 })}
             </tr>
 
             {data.length > 0 && data.map((item, i) => {
-                return <tr className="bg-[#FFFFFF] border-b  odd:bg-slate-50" key={`col_${i}`}>
-                    <td><div className="w-[170px]">{truncateMiddle(item.fileName, 5, 5)}</div></td>
-                    <td><div className="w-[130px] flex items-center justify-between gap-1 ">{truncateMiddle(item.bagId, 5, 5)}
+                return <tr className="bg-[#FFFFFF] border-b  odd:bg-slate-50  pl-3" key={`col_${i}`}>
+                    <td><div className="w-[170px] h-[40px] flex items-center">{truncateMiddle(item.fileName, 5, 5)}</div></td>
+                    <td><div className="w-[120px]  flex items-center justify-between ">{truncateMiddle(item.bagId, 5, 5)}
                         <button onClick={() => copyTextToClipboard(item.bagId)}>
                             <img src='/copy.svg' className=" w-5" />
                         </button>
