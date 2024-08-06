@@ -44,7 +44,7 @@ const Files = () => {
   // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
   const getCurrentUserInfo = useCallback(async () => {
-    if (!userFriendlyAddress) return
+    if (!userFriendlyAddress || !add?.address) return
     const { status, data = { success: false, data: [] }, } = await axios(`https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`)
     if (status === 200 && data.success === true) {
       setUserData({} as responseData)
