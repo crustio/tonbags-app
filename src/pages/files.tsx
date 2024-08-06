@@ -70,7 +70,7 @@ const Files = () => {
         <div className=' border-[#snow]  my-5  '>
           <div className=' text-black text-lg text-left'>
             My Files
-            {`${userData?.data[0]?.from}`}
+            {`https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`}
 
             {add?.address && <div className='flex items-center gap-5 mt-5'>
               <span className=' text-xl'>
