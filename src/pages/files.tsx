@@ -1,6 +1,5 @@
 import { useTonAddress, } from '@tonconnect/ui-react';
-import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../App.css';
 import ATable from '../components/ATable';
 import { Pagination } from '../components/Pagination';
@@ -45,9 +44,6 @@ const Files = () => {
 
   const getCurrentUserInfo = async () => {
     const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`
-
-    console.log('urlurl', url);
-
     if (!add?.address) return
     fetch(url, {
       headers: { 'Content-Type': 'application/json' }
@@ -55,8 +51,6 @@ const Files = () => {
       return response.json()
     })
       .then((res) => {
-        console.log('ressss,res', res);
-
         if (res.success && res.data.length) {
           setUserData({} as responseData)
           setUserData(res)
