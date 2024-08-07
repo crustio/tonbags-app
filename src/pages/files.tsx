@@ -44,12 +44,24 @@ const Files = () => {
   // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
   const getCurrentUserInfo = async () => {
+    const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`
     if (!userFriendlyAddress || !add?.address) return
-    const { status, data = { success: false, data: [] }, } = await axios(`https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`)
-    if (status === 200 && data.success === true) {
-      setUserData({} as responseData)
-      setUserData(data)
-    }
+    fetch(url, {
+      headers: { 'Content-Type': 'application/json' }
+    }).then(response => {
+      return response.json()
+    })
+      .then((res) => {
+        if (res.success && res.data.length) {
+          setUserData({} as responseData)
+          setUserData(res)
+        }
+
+      })
+      .catch((err) => {
+        console.log('err', err);
+
+      })
   }
 
 
@@ -68,12 +80,12 @@ const Files = () => {
       {
         // userFriendlyAddress && (
         <div className=' border-[#snow]  my-5  '>
-          <div className=' text-black text-lg text-left'>
-            My Files
-            {`https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`}
-
-            {add?.address && <div className='flex items-center gap-5 mt-5'>
-              <span className=' text-xl'>
+          <div className=' text-black  text-left'>
+            <span className=' text-xl'>
+              My Files
+            </span>
+            {add?.address && <div className='flex  items-center gap-5 mt-5'>
+              <span className=' '>
                 Address:
               </span>
               <div className=' font-medium'>
