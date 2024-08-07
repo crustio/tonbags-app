@@ -32,6 +32,7 @@ export type responseData = {
 
 const Files = () => {
   const [userData, setUserData] = useState<responseData>()
+  const [loading, setLoading] = useState(true)
   // const tonAdd = useTonWallet();
   const [pgNum, setPgNum] = useState(1)
   const userFriendlyAddress = useTonAddress();
@@ -55,11 +56,12 @@ const Files = () => {
           setUserData({} as responseData)
           setUserData(res)
         }
-
       })
       .catch((err) => {
         console.log('err', err);
 
+      }).finally(() => {
+        setLoading(false)
       })
   }
 
@@ -108,6 +110,7 @@ const Files = () => {
             </div>
             <div className='mt-5   mo:w-[350px]  overflow-auto '>
               <ATable
+                loading={loading}
                 header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }]}
                 data={userData?.data}
               />

@@ -1,12 +1,14 @@
 import { FC } from "react";
 import { data } from "../pages/files";
 import { copyTextToClipboard, formatBytes, timestampToDateTime, truncateMiddle } from "../utils/utils";
+import { Loading } from "./ALoading";
 type ATableProps = {
     header: { name: string }[]
     data?: data[]
+    loading?: boolean
 }
 
-const ATable: FC<ATableProps> = ({ header = [], data = [] }) => {
+const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
     return <>
 
         <table className=" overflow-auto mb-[5px]  ">
@@ -19,7 +21,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [] }) => {
             {data.length > 0 && data.map((item, i) => {
                 return <tr className="bg-[#FFFFFF] border-b  odd:bg-slate-50  pl-3" key={`col_${i}`}>
                     <td><div className="w-[170px] h-[40px] flex items-center">{truncateMiddle(item.fileName, 5, 5)}</div></td>
-                    <td><div className="w-[120px]  flex items-center justify-between ">{truncateMiddle(item.bagId, 5, 5)}
+                    <td><div className="w-[120px]  flex items-center justify-between  ">{truncateMiddle(item.bagId, 5, 5)}
                         <button onClick={() => copyTextToClipboard(item.bagId)}>
                             <img src='/copy.svg' className=" w-5" />
                         </button>
@@ -32,6 +34,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [] }) => {
             })}
 
         </table>
+        {loading && <Loading />}
 
     </>;
 };
