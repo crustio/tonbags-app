@@ -48,7 +48,7 @@ const Files = () => {
 
     console.log('urlurl', url);
 
-    if (!userFriendlyAddress || !add?.address) return
+    if (!add?.address) return
     fetch(url, {
       headers: { 'Content-Type': 'application/json' }
     }).then(response => {
@@ -73,7 +73,7 @@ const Files = () => {
 
   useEffect(() => {
     getCurrentUserInfo()
-  }, [userFriendlyAddress, add?.address, pgNum])
+  }, [add?.address, pgNum])
 
 
 
