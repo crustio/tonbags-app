@@ -76,7 +76,7 @@ const Files = () => {
 
 
   return (
-    <div className=' mb-[100px]'>
+    <div className=' mb-[100px] h-[800px]'>
       <div className=' flex justify-center'>
         {/* <TonConnectButton /> */}
       </div>
