@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import '../App.css';
 import ATable from '../components/ATable';
 import { Pagination } from '../components/Pagination';
-import { copyTextToClipboard, getCurrentUrlParams, truncateMiddle } from '../utils/utils';
+import { copyTextToClipboard, getCurrentUrlParams, scrollToTop, truncateMiddle } from '../utils/utils';
+import { Loading } from '../components/ALoading';
 
 export type pagination = {
   "page": number,
@@ -35,7 +36,7 @@ const Files = () => {
   const [loading, setLoading] = useState(true)
   // const tonAdd = useTonWallet();
   const [pgNum, setPgNum] = useState(1)
-  const userFriendlyAddress = useTonAddress();
+  // const userFriendlyAddress = useTonAddress();
   const add = getCurrentUrlParams()
 
 
@@ -44,6 +45,7 @@ const Files = () => {
   // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
   const getCurrentUserInfo = async () => {
+
     const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`
     if (!add?.address) return
     fetch(url, {
@@ -99,7 +101,7 @@ const Files = () => {
 
 
 
-            <div className=' flex w-full gap-5  mt-5 text-black'>
+            <div className=' flex w-full gap-5  mt-[10px] text-black'>
               <div>
                 Files Stored: {userData?.pagination?.totalRecords || ''}
               </div>
@@ -108,19 +110,23 @@ const Files = () => {
               </div>
 
             </div>
+
             <div className='mt-5   mo:w-[350px]  overflow-auto '>
               <ATable
                 loading={loading}
-                header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }]}
+                header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }, { name: 'Action' }]}
                 data={userData?.data}
               />
 
 
+
             </div>
+
             <div className=' mt-[30px]'>
               <Pagination
                 onChange={(num: number, count?: number) => {
                   setPgNum(num);
+                  scrollToTop()
                   if (num === 1 || !count) return;
                 }}
                 total={userData?.pagination?.totalRecords || 0}
@@ -128,6 +134,7 @@ const Files = () => {
                 pgNum={Number(userData?.pagination.page) || 10} />
 
             </div>
+
           </div>
 
         </div>

@@ -9,32 +9,48 @@ type ATableProps = {
 }
 
 const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
+
+
+    const onDownloadFile = (item: data) => {
+        const host = ` https://ton-gateway.crust.network/gateway/${item.bagId}`
+        const link = document.createElement("a");
+        link.href = host;
+        link.click();
+        URL.revokeObjectURL(link.href);
+        window.open()
+
+    }
     return <>
 
         <table className=" overflow-auto mb-[5px]  ">
             <tr className=" bg-[#FAFAFA] rounded-lg h-[50px] w-[200px] border-b-[#FFFFFF]  ">
                 {header.map((item, i) => {
-                    return <th key={`table_${i}`} className={`${data.length && ' w-full pl-1'}`}>{item.name}</th>
+                    return <th key={`table_${i}`} className={`${data.length && !loading && ' w-full'} th`}>{item.name}</th>
                 })}
             </tr>
+            {
+                loading ? <Loading /> :
+                    data.length > 0 && data.map((item, i) => {
+                        return <tr className="bg-[#FFFFFF] border-b  odd:bg-slate-50  pl-3" key={`col_${i}`}>
+                            <td><div className="w-[300px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 10, 10)}</div></td>
+                            <td><div className="w-[130px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId, 5, 5)}
+                                <button onClick={() => copyTextToClipboard(item.bagId)}>
+                                    <img src='/copy.svg' className=" w-5" />
+                                </button>
+                            </div></td>
+                            <td><div className="w-[100px]">{formatBytes(Number(item.fileSize))}</div></td>
+                            <td><div className="w-[150px]">{timestampToDateTime(Number(item.uploadDate))}</div></td>
+                            <td><div className="w-[100px]">{truncateMiddle(item.from, 5, 5)}</div></td>
+                            <td><div className="w-[100px]">
+                                <button onClick={() => onDownloadFile(item)}>
+                                    <img src="download.svg" className="w-5" />
+                                </button>
+                            </div></td>
+                        </tr>
 
-            {data.length > 0 && data.map((item, i) => {
-                return <tr className="bg-[#FFFFFF] border-b  odd:bg-slate-50  pl-3" key={`col_${i}`}>
-                    <td><div className="w-[170px] h-[40px] flex items-center">{truncateMiddle(item.fileName, 5, 5)}</div></td>
-                    <td><div className="w-[120px]  flex items-center justify-between  ">{truncateMiddle(item.bagId, 5, 5)}
-                        <button onClick={() => copyTextToClipboard(item.bagId)}>
-                            <img src='/copy.svg' className=" w-5" />
-                        </button>
-                    </div></td>
-                    <td><div className="w-[100px]">{formatBytes(Number(item.fileSize))}</div></td>
-                    <td><div className="w-[150px]">{timestampToDateTime(Number(item.uploadDate))}</div></td>
-                    <td><div className="w-[100px]">{truncateMiddle(item.from, 5, 5)}</div></td>
-                </tr>
-
-            })}
+                    })}
 
         </table>
-        {loading && <Loading />}
 
     </>;
 };

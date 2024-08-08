@@ -70,3 +70,7 @@ table{
   font-size: 15px;
 }
 
+
+.th:first-child {
+  padding: 12px;
+}

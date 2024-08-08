@@ -63,8 +63,13 @@ export const copyTextToClipboard = async (text: string) => {
     if (!text) return;
     try {
         await navigator.clipboard.writeText(text);
-        toast.success('Copy successfully!');
+        toast.success('Copy Successfully!');
     } catch (err) {
         console.error('Unable to copy text to clipboard:', err);
     }
+};
+
+export const scrollToTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 };
