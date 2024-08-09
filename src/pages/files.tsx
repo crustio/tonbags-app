@@ -45,7 +45,6 @@ const Files = () => {
   // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
   const getCurrentUserInfo = async () => {
-
     const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`
     if (!add?.address) return
     fetch(url, {
@@ -74,9 +73,8 @@ const Files = () => {
   }, [add?.address, pgNum])
 
 
-
   return (
-    <div className=' mb-[100px] h-[800px]'>
+    <div className=' mb-[100px] h-[700px]'>
       <div className=' flex justify-center'>
         {/* <TonConnectButton /> */}
       </div>

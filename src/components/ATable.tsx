@@ -12,7 +12,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
 
 
     const onDownloadFile = (item: data) => {
-        const host = ` https://ton-gateway.crust.network/gateway/${item.bagId}`
+        const host = ` https://ton-gateway.crust.network/gateway/${item.bagId}?filename=${item.fileName}`
         const link = document.createElement("a");
         link.href = host;
         link.click();
@@ -32,7 +32,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                 loading ? <Loading /> :
                     data.length > 0 && data.map((item, i) => {
                         return <tr className="bg-[#FFFFFF] border-b  odd:bg-slate-50  pl-3" key={`col_${i}`}>
-                            <td><div className="w-[300px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 10, 10)}</div></td>
+                            <td><div className="w-[200px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 5, 5)}</div></td>
                             <td><div className="w-[130px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId, 5, 5)}
                                 <button onClick={() => copyTextToClipboard(item.bagId)}>
                                     <img src='/copy.svg' className=" w-5" />
