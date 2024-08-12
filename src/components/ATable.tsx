@@ -28,7 +28,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                     return <th key={`table_${i}`} className={`${data.length && !loading && ' w-full'} th`}>{item.name}</th>
                 })}
             </tr>
-            {data.length > 0 && data.map((item, i) => {
+            {!loading && data.length > 0 && data.map((item, i) => {
                 return <tr className="bg-[#FFFFFF] border-b  odd:bg-slate-50  pl-3" key={`col_${i}`}>
                     <td><div id="not-clickable"
                         data-tooltip-id="my-tooltip"

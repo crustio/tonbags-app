@@ -35,6 +35,7 @@ export function calculateTotalFileSize<T extends DataItem>(data: T[], key: strin
 
 export const truncateMiddle = (str: string, frontLen: number, endLen: number) => {
     if (!str) return;
+    if (str.length <= 10) return str;
     const [name, ext] = str.split('.');
 
     const firstPart = name?.slice(0, frontLen);

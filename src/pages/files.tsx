@@ -45,6 +45,7 @@ const Files = () => {
   // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
   const getCurrentUserInfo = async () => {
+    setLoading(true)
     const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`
     if (!add?.address) return
     fetch(url, {
@@ -74,7 +75,7 @@ const Files = () => {
 
 
   return (
-    <div className=' mb-[100px] h-[700px]'>
+    <div className=' mb-[100px] h-auto'>
       <div className=' flex justify-center'>
         {/* <TonConnectButton /> */}
       </div>
@@ -109,11 +110,12 @@ const Files = () => {
 
             </div>
 
-            <div className='mt-5   mo:w-[350px]  overflow-auto h-[500px] '>
+            <div className='mt-5   mo:w-[350px]  overflow-auto  '>
               <ATable
                 loading={loading}
                 header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }, { name: 'Action' }]}
                 data={userData?.data}
+
               />
 
 
