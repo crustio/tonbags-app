@@ -15,7 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <TonConnectUIProvider manifestUrl={'https://mini-app.crust.network/tonconnect-manifest.json'}>
       <InitToolTip />
       <App />
-
       <Toaster position={'top-center'} />
     </TonConnectUIProvider>
   </React.StrictMode>,
