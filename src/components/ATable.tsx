@@ -34,7 +34,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                         data-tooltip-id="my-tooltip"
                         data-tooltip-content={item.fileName}
                         data-tooltip-delay-hide={100}
-                        data-tooltip-place='top-start' className="w-[200px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 5, 5)}</div></td>
+                        data-tooltip-place='top-start' className="w-[230px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 5, 5)}</div></td>
                     <td><div className="w-[130px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId, 5, 5)}
                         <button onClick={() => copyTextToClipboard(item.bagId)}>
                             <img src='/copy.svg' className=" w-5" />
@@ -45,7 +45,10 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                     >{formatBytes(Number(item.fileSize))}</div></td>
                     <td><div className="w-[150px]">{timestampToDateTime(Number(item.uploadDate))}</div></td>
                     <td><div className="w-[100px]">{truncateMiddle(item.from, 5, 5)}</div></td>
-                    <td><div className="w-[100px]">
+                    <td><div className="w-[100px] flex gap-2">
+                        <button onClick={() => copyTextToClipboard(`https://ton-gateway.crust.network/gateway/${item.bagId}?filename=${item.fileName}`)}>
+                            <img src="share.svg" className="w-5" />
+                        </button>
                         <button onClick={() => onDownloadFile(item)}>
                             <img src="download.svg" className="w-5" />
                         </button>
