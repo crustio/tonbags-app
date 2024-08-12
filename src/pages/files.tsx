@@ -109,7 +109,7 @@ const Files = () => {
 
             </div>
 
-            <div className='mt-5   mo:w-[350px]  overflow-auto '>
+            <div className='mt-5   mo:w-[350px]  overflow-auto h-[500px] '>
               <ATable
                 loading={loading}
                 header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }, { name: 'Action' }]}
