@@ -1,10 +1,8 @@
-import { useTonAddress, } from '@tonconnect/ui-react';
 import { useEffect, useState } from 'react';
 import '../App.css';
 import ATable from '../components/ATable';
 import { Pagination } from '../components/Pagination';
 import { copyTextToClipboard, getCurrentUrlParams, scrollToTop, truncateMiddle } from '../utils/utils';
-import { Loading } from '../components/ALoading';
 
 export type pagination = {
   "page": number,
@@ -110,16 +108,13 @@ const Files = () => {
 
             </div>
 
-            <div className='mt-5   mo:w-[350px]  overflow-auto  '>
+            <div className='mt-5   mo:w-[350px]  overflow-auto overflow '>
               <ATable
                 loading={loading}
                 header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }, { name: 'Action' }]}
                 data={userData?.data}
 
               />
-
-
-
             </div>
 
             <div className=' mt-[30px]'>

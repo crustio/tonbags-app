@@ -8,7 +8,6 @@ export const timestampToDateTime = (timestamp: number) => {
     const day = ('0' + date.getDate()).slice(-2);
     const hours = ('0' + date.getHours()).slice(-2);
     const minutes = ('0' + date.getMinutes()).slice(-2);
-    // const seconds = ('0' + date.getSeconds()).slice(-2);
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
 };
@@ -34,16 +33,11 @@ export function calculateTotalFileSize<T extends DataItem>(data: T[], key: strin
 }
 
 export const truncateMiddle = (str: string, frontLen: number, endLen: number) => {
-    if (!str) return;
-    if (str.length <= 10) return str;
-    const [name, ext] = str.split('.');
-
-    const firstPart = name?.slice(0, frontLen);
-    const lastPart = name?.slice(-endLen);
-
-    const shortName = `${firstPart}...${lastPart}${ext ? '.' + ext : ''}`;
-
-    return shortName;
+    if (!str) return '';
+    if (str.length <= frontLen + endLen) return str;
+    const start = str?.substring(0, frontLen) || '';
+    const end = str?.substring(str.length - endLen) || '';
+    return `${start}...${end}`;
 };
 
 export function getCurrentUrlParams() {
@@ -75,4 +69,5 @@ export const copyTextToClipboard = async (text: string) => {
 export const scrollToTop = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    document.getElementsByClassName('overflow')[0]!.scrollLeft = 0;
 };

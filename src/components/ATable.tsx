@@ -11,6 +11,7 @@ type ATableProps = {
 const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
 
 
+
     const onDownloadFile = (item: data) => {
         const host = ` https://ton-gateway.crust.network/gateway/${item.bagId}?filename=${item.fileName}`
         const link = document.createElement("a");
@@ -34,7 +35,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                         data-tooltip-id="my-tooltip"
                         data-tooltip-content={item.fileName}
                         data-tooltip-delay-hide={100}
-                        data-tooltip-place='top-start' className="w-[230px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 5, 5)}</div></td>
+                        data-tooltip-place='top-start' className="w-[230px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 6, 6)}</div></td>
                     <td><div className="w-[130px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId, 5, 5)}
                         <button onClick={() => copyTextToClipboard(item.bagId)}>
                             <img src='/copy.svg' className=" w-5" />
