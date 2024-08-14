@@ -37,7 +37,7 @@ export const Pagination = (p: Props) => {
   const count = Math.ceil(total / pgSize);
   const items: Item[] = useMemo(() => {
     if (count <= 1) return [];
-    if (count <= 6) return range(count).map((i) => ({ name: `${i + 1}` }));
+    if (count <= 5) return range(count).map((i) => ({ name: `${i + 1}` }));
     if (pgNum <= 3)
       return range(pgNum + 1)
         .map((i) => ({ name: `${i + 1}` }))
@@ -73,6 +73,7 @@ export const Pagination = (p: Props) => {
     onChange && onChange(count);
   };
   if (total <= pgSize) return null;
+
 
   return (
     <div
