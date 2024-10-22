@@ -35,6 +35,8 @@ export const Pagination = (p: Props) => {
   };
   const { total = 0, pgSize = 1, pgNum = 10, onChange, className } = p;
   const count = Math.ceil(total / pgSize);
+
+
   const items: Item[] = useMemo(() => {
     if (count <= 1) return [];
     if (count <= 4) return range(count).map((i) => ({ name: `${i + 1}` }));
@@ -52,7 +54,6 @@ export const Pagination = (p: Props) => {
       { name: pgNum - 1 + "" },
       { name: pgNum + "" },
       { name: pgNum + 1 + "" },
-      { name: omit },
       { name: count + "" },
     ];
   }, [count, pgNum]);
@@ -78,7 +79,7 @@ export const Pagination = (p: Props) => {
   return (
     <div
       className={classnames(
-        "flex justify-center text-[0.8125rem] text-center leading-8 font-semibold",
+        "flex text-[0.8125rem] text-center leading-8 font-semibold ",
         className
       )}
     >

@@ -20,6 +20,8 @@ export type data = {
   id: string;
   bagId: string;
   uploadDate: string;
+  saveMode: '' | 'ton' | 'crust'
+  cid: string
 }
 
 export type responseData = {
@@ -111,30 +113,31 @@ const Files = () => {
             <div className='mt-5   mo:w-[350px]  overflow-auto overflow '>
               <ATable
                 loading={loading}
-                header={[{ name: 'Name' }, { name: 'BagID', }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }, { name: 'Action' }]}
+                header={[{ name: 'Name' }, { name: 'BagID', }, { name: "CID" }, { name: "Mode" }, { name: 'Size', }, { name: 'Upload Date' }, { name: 'From' }, { name: 'Action' }]}
                 data={userData?.data}
 
               />
             </div>
 
-            <div className=' mt-[30px]'>
-              <Pagination
-                onChange={(num: number, count?: number) => {
-                  setPgNum(num);
-                  scrollToTop()
-                  if (num === 1 || !count) return;
-                }}
-                total={userData?.pagination?.totalRecords || 0}
-                pgSize={Number(userData?.pagination.pageSize) || 1}
-                pgNum={Number(userData?.pagination.page) || 10} />
-
-            </div>
 
           </div>
 
         </div>
         // )
       }
+
+      <div className=' mt-[30px]'>
+        <Pagination
+          onChange={(num: number, count?: number) => {
+            setPgNum(num);
+            scrollToTop()
+            if (num === 1 || !count) return;
+          }}
+          total={userData?.pagination?.totalRecords || 0}
+          pgSize={Number(userData?.pagination.pageSize) || 1}
+          pgNum={Number(userData?.pagination.page) || 10} />
+
+      </div>
 
     </div>
   )

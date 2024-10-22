@@ -36,13 +36,27 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                         data-tooltip-content={item.fileName}
                         data-tooltip-delay-hide={100}
                         data-tooltip-place='top-start' className="w-[230px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 6, 6)}</div></td>
-                    <td><div className="w-[130px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId, 5, 5)}
-                        <button onClick={() => copyTextToClipboard(item.bagId)}>
-                            <img src='/copy.svg' className=" w-5" />
-                        </button>
-                    </div></td>
-                    <td><div className="w-[100px]"
+                    <td>
+                        <div className="w-[150px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId, 5, 5)}
+                            <button onClick={() => copyTextToClipboard(item.bagId)}>
+                                <img src='/copy.svg' className=" w-5" />
+                            </button>
+                        </div>
+                    </td>
 
+                    <td>
+                        <div className="w-[150px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.cid, 5, 5)}
+                            <button onClick={() => copyTextToClipboard(item.cid)}>
+                                <img src='/copy.svg' className=" w-5" />
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        <div className="w-[150px]  flex items-center justify-between mr-5  ">
+                            {item.saveMode}
+                        </div>
+                    </td>
+                    <td><div className="w-[100px]"
                     >{formatBytes(Number(item.fileSize))}</div></td>
                     <td><div className="w-[150px]">{timestampToDateTime(Number(item.uploadDate))}</div></td>
                     <td><div className="w-[100px]">{truncateMiddle(item.from, 5, 5)}</div></td>
