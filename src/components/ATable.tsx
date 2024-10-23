@@ -46,16 +46,16 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                         data-tooltip-id="my-tooltip"
                         data-tooltip-content={item.fileName}
                         data-tooltip-delay-hide={100}
-                        data-tooltip-place='top-start' className="w-[230px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 6, 6)}</div></td>
+                        data-tooltip-place='top-start' className="w-[200px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 6, 6)}</div></td>
                     <td>
-                        <div className="w-[150px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId || item.cid, 5, 5)}
+                        <div className="w-[130px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId || item.cid, 5, 5)}
                             <button onClick={() => copyTextToClipboard(item.bagId || item.cid)}>
                                 <img src='/copy.svg' className=" w-5" />
                             </button>
                         </div>
                     </td>
                     <td>
-                        <div className="w-[150px]  flex items-center justify-between mr-5  ">
+                        <div className="w-[30px]  flex items-center justify-between mr-5  ">
                             {item.saveMode}
                         </div>
                     </td>
