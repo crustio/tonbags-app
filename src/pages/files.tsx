@@ -45,8 +45,9 @@ const Files = () => {
   // const userFriendlyAddress = tonAdd?.account.address && toUserFriendlyAddress(tonAdd.account.address, false)
 
   const getCurrentUserInfo = async () => {
+    const baseUrl = import.meta.env.VITE_API_BASEURL || ''
     setLoading(true)
-    const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`
+    const url = `${baseUrl}?address=${add.address}&page=${pgNum}&pageSize=10`
     if (!add?.address) return
     fetch(url, {
       headers: { 'Content-Type': 'application/json' }
