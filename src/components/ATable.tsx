@@ -37,16 +37,8 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                         data-tooltip-delay-hide={100}
                         data-tooltip-place='top-start' className="w-[230px]  pl-2  h-[40px] flex items-center">{truncateMiddle(item.fileName, 6, 6)}</div></td>
                     <td>
-                        <div className="w-[150px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId, 5, 5)}
-                            <button onClick={() => copyTextToClipboard(item.bagId)}>
-                                <img src='/copy.svg' className=" w-5" />
-                            </button>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div className="w-[150px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.cid, 5, 5)}
-                            <button onClick={() => copyTextToClipboard(item.cid)}>
+                        <div className="w-[150px]  flex items-center justify-between mr-5  ">{truncateMiddle(item.bagId || item.cid, 5, 5)}
+                            <button onClick={() => copyTextToClipboard(item.bagId || item.cid)}>
                                 <img src='/copy.svg' className=" w-5" />
                             </button>
                         </div>
