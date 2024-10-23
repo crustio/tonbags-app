@@ -56,7 +56,7 @@ export function getCurrentUrlParams() {
     return paramsObj;
 }
 
-export const copyTextToClipboard = async (text: string) => {
+export const copyTextToClipboard = async (text?: string) => {
     if (!text) return;
     try {
         await navigator.clipboard.writeText(text);

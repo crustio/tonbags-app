@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { data } from "../pages/files";
 import { copyTextToClipboard, formatBytes, timestampToDateTime, truncateMiddle } from "../utils/utils";
 import { Loading } from "./ALoading";
@@ -10,17 +10,28 @@ type ATableProps = {
 
 const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
 
-
+    const fileHost = (item: data) => {
+        const cru_host = import.meta.env.VITE_API_DOWNLOAD_CRU_URL || ''
+        const ton_host = import.meta.env.VITE_API_DOWNLOAD_TON_URL || ''
+        if (!cru_host || !ton_host) return
+        let host = `${item.bagId ? ton_host : cru_host}/${item.cid || item.bagId}?filename=${encodeURI(item.fileName)}`
+        return host
+    }
 
     const onDownloadFile = (item: data) => {
-        const host = ` https://ton-gateway.crust.network/gateway/${item.bagId}?filename=${item.fileName}`
+        const host = fileHost(item)
         const link = document.createElement("a");
-        link.href = host;
+        link.href = host || '';
         link.click();
         URL.revokeObjectURL(link.href);
         window.open()
-
     }
+
+    const onShare = (item: data) => {
+        return fileHost(item)
+    }
+
+
     return <>
 
         <table className=" overflow-auto mb-[5px]  ">
@@ -53,7 +64,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
                     <td><div className="w-[150px]">{timestampToDateTime(Number(item.uploadDate))}</div></td>
                     <td><div className="w-[100px]">{truncateMiddle(item.from, 5, 5)}</div></td>
                     <td><div className="w-[100px] flex gap-2">
-                        <button onClick={() => copyTextToClipboard(`https://ton-gateway.crust.network/gateway/${item.bagId}?filename=${item.fileName}`)}>
+                        <button onClick={() => copyTextToClipboard(onShare(item))}>
                             <img src="share.svg" className="w-5" />
                         </button>
                         <button onClick={() => onDownloadFile(item)}>
