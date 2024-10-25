@@ -13,7 +13,6 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
     const fileHost = (item: data) => {
         const cru_host = 'https://gw.crust-gateway.xyz/ipfs'
         const ton_host = 'https://ton-gateway.crust.network/gateway'
-        if (!cru_host || !ton_host) return
         let host = `${item.bagId ? ton_host : cru_host}/${item.cid || item.bagId}?filename=${encodeURI(item.fileName)}`
         return host
     }
