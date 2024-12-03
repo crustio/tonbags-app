@@ -86,12 +86,12 @@ export const Pagination = (p: Props) => {
       <div className="flex">
         {count > 1 && (
           <div className="flex">
-            <span
+            {/* <span
               onClick={doFirst}
               className="mx-[0.185rem]  flex justify-center items-center cursor-pointer border min-w-[32px] h-[32px] "
             >
               <FiChevronsLeft className="text-[gray]" />
-            </span>
+            </span> */}
             <span
               onClick={doPrev}
               className="mx-[0.185rem]   flex justify-center items-center cursor-pointer border min-w-[32px] h-[32px] "
@@ -128,12 +128,12 @@ export const Pagination = (p: Props) => {
             >
               <FiChevronRight className="text-[gray]" />
             </span>
-            <span
+            {/* <span
               onClick={doLast}
               className=" mx-[0.185rem] flex justify-center items-center cursor-pointer border min-w-[32px] h-[32px] "
             >
               <FiChevronsRight className="text-[gray]" />
-            </span>
+            </span> */}
           </div>
         )}
       </div>

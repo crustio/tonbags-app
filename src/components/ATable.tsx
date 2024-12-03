@@ -33,7 +33,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
 
     return <>
 
-        <table className=" overflow-auto mb-[5px]  ">
+        <table className=" mb-[5px]">
             <tr className=" bg-[#FAFAFA] rounded-lg h-[50px] w-[200px] border-b-[#FFFFFF]  ">
                 {header.map((item, i) => {
                     return <th key={`table_${i}`} className={`${data.length && !loading && ' w-full'} th`}>{item.name}</th>
