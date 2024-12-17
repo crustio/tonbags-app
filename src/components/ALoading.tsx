@@ -8,7 +8,7 @@ export function Loading(p: { size?: string } & HTMLAttributes<HTMLDivElement>) {
     <div
       {...other}
       className={classNames(
-        "text-black w-full h-full flex items-center justify-center",
+        "text-black w-full h-full flex items-center justify-center sticky left-0",
         className
       )}
     >

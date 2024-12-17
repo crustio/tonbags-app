@@ -47,7 +47,7 @@ const Files = () => {
 
     const getCurrentUserInfo = async () => {
         setLoading(true);
-        const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=10`;
+        const url = `https://tonbags-api.crust.network/users?address=${add.address}&page=${pgNum}&pageSize=8`;
         if (!add?.address) return;
         fetch(url, {
             headers: { 'Content-Type': 'application/json' }
@@ -74,7 +74,7 @@ const Files = () => {
     }, [add?.address, pgNum]);
 
     return (
-        <div className="h-full min-h-[670px] w-full text-black text-left flex flex-col ">
+        <div className="h-full min-h-[584px] w-full text-black text-left flex flex-col ">
             {
                 <>
                     <span className=" text-xl">My Files</span>
@@ -95,15 +95,16 @@ const Files = () => {
 
                     <div className="mt-5  w-full flex-1  overflow-auto pb-2.5">
                         <ATable
+                            className='w-[57.8125rem]'
                             loading={loading}
                             header={[
-                                { name: 'Name' },
-                                { name: 'Identifier' },
-                                { name: 'Mode' },
-                                { name: 'Size' },
-                                { name: 'Upload Date' },
-                                { name: 'From' },
-                                { name: 'Action' }
+                                { name: 'Name', className: 'min-w-[211px]' },
+                                { name: 'Identifier', className: 'min-w-[161px]' },
+                                { name: 'Mode', className: 'min-w-[61px]' },
+                                { name: 'Size', className: 'min-w-[111px]' },
+                                { name: 'Upload Date', className: 'min-w-[161px]' },
+                                { name: 'From', className: 'min-w-[111px]' },
+                                { name: 'Action', className: 'min-w-[111px]' }
                             ]}
                             data={userData?.data}
                         />
@@ -119,7 +120,7 @@ const Files = () => {
                     }}
                     total={userData?.pagination?.totalRecords || 0}
                     pgSize={Number(userData?.pagination.pageSize) || 1}
-                    pgNum={Number(userData?.pagination.page) || 10}
+                    pgNum={Number(userData?.pagination.page) || 8}
                 />
             </div>
         </div>

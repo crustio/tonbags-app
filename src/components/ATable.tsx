@@ -2,13 +2,15 @@ import { FC, useEffect } from "react";
 import { data } from "../pages/files";
 import { copyTextToClipboard, formatBytes, timestampToDateTime, truncateMiddle } from "../utils/utils";
 import { Loading } from "./ALoading";
+import classNames from "classnames";
 type ATableProps = {
-    header: { name: string }[]
+    header: { name: string, className?: string }[]
     data?: data[]
     loading?: boolean
+    className?: string
 }
 
-const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
+const ATable: FC<ATableProps> = ({ header = [], data = [], loading, className }) => {
 
     const fileHost = (item: data) => {
         const cru_host = 'https://gw.crust-gateway.xyz/ipfs'
@@ -33,10 +35,10 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
 
     return <>
 
-        <table className=" mb-[5px]">
+        <table className={classNames(" mb-[5px]", className)}>
             <tr className=" bg-[#FAFAFA] rounded-lg h-[50px] w-[200px] border-b-[#FFFFFF]  ">
                 {header.map((item, i) => {
-                    return <th key={`table_${i}`} className={`${data.length && !loading && ' w-full'} th`}>{item.name}</th>
+                    return <th key={`table_${i}`} className={classNames(`${data.length && !loading && ' w-full'} th`, item.className)}>{item.name}</th>
                 })}
             </tr>
             {!loading && data.length > 0 && data.map((item, i) => {
@@ -75,7 +77,7 @@ const ATable: FC<ATableProps> = ({ header = [], data = [], loading }) => {
             })}
 
         </table>
-        {loading && <Loading />}
+        {loading && <Loading className="mt-[100px]" />}
 
     </>;
 };

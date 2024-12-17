@@ -79,7 +79,7 @@ export const Pagination = (p: Props) => {
   return (
     <div
       className={classnames(
-        "flex text-[0.8125rem] text-center leading-8 font-semibold ",
+        "flex text-[0.8125rem] text-center leading-8 font-semibold justify-center",
         className
       )}
     >
