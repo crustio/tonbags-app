@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import ReactDOM from 'react-dom/client'
 import './index.css'
 import { TonConnectUIProvider } from '@tonconnect/ui-react'
-import App from './App'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import "react-tooltip/dist/react-tooltip.css"
 import { Toaster } from 'sonner'
-import "react-tooltip/dist/react-tooltip.css";
+import App from './App'
 import { InitToolTip } from './utils/tooltip'
 
 

@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { BiChevronLeftCircle, BiChevronRightCircle } from 'react-icons/bi';
 import '../App.css';
-import ATable from '../components/ATable';
+import ATable, { ATableRef } from '../components/ATable';
 import { Pagination } from '../components/Pagination';
 import {
     copyTextToClipboard,
@@ -72,7 +73,7 @@ const Files = () => {
     useEffect(() => {
         getCurrentUserInfo();
     }, [add?.address, pgNum]);
-
+    const ref = useRef<ATableRef>(null)
     return (
         <div className="h-full min-h-[584px] w-full text-black text-left flex flex-col ">
             {
@@ -91,10 +92,15 @@ const Files = () => {
                     <div className=" flex w-full gap-5  flex-wrap mt-[10px] text-black">
                         <div>Files Stored: {userData?.pagination?.totalRecords || ''}</div>
                         <div>Space Usage: {userData?.countFileSize}</div>
+                        <div className='flex items-center text-2xl text-black gap-2 ml-auto'>
+                            <BiChevronLeftCircle className='hover:text-black/80 cursor-pointer' onClick={() => ref.current?.scroll('start')} />
+                            <BiChevronRightCircle className='hover:text-black/80 cursor-pointer' onClick={(() => ref.current?.scroll('end'))} />
+                        </div>
                     </div>
 
-                    <div className="mt-5  w-full flex-1  overflow-auto pb-2.5">
+                    <div className="mt-5  w-full flex-1  overflow-auto pb-2.5" >
                         <ATable
+                            ref={ref}
                             className='w-[57.8125rem]'
                             loading={loading}
                             header={[
