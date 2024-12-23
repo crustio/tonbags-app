@@ -69,5 +69,6 @@ export const copyTextToClipboard = async (text?: string) => {
 export const scrollToTop = () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    document.getElementsByClassName('overflow')[0]!.scrollLeft = 0;
+    const overflow = document.getElementsByClassName('overflow')[0];
+    overflow && (overflow.scrollLeft = 0);
 };
