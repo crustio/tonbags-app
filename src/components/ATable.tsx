@@ -28,7 +28,12 @@ const ATable = React.forwardRef(({ header = [], data = [], loading, className }:
         // link.target = "_blank"
         // link.href = host || '';
         // link.click();
-        FileSaver.saveAs(host, item.fileName)
+        if ('Telegram' in window) {
+            (window.Telegram as any).WebApp.downloadFile({ url: host, file_name: item.fileName })
+        } else {
+            FileSaver.saveAs(host, item.fileName)
+        }
+
     }
     const onShare = (item: data) => {
         return fileHost(item)
