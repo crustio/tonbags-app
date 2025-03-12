@@ -44,3 +44,5 @@ jobs:
             - name: build to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v1
+              with:
+               artifact-name: github-pages
