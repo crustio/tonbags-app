@@ -3,7 +3,6 @@ name: build to page
 on:
     push:
         branches: ['main']
-
     workflow_dispatch:
 
 permissions:
@@ -22,30 +21,33 @@ jobs:
             url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
+            - name: Checkout repository
               uses: actions/checkout@v3
-            - name: set Node
+
+            - name: Set up Node.js
               uses: actions/setup-node@v3
               with:
                   node-version: 18
                   cache: 'yarn'
-                  cache-dependency-path: './'
-            - name: install
-              run: yarn install
-            - name: build
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Build project
               run: yarn build
-            - name: set page
-              uses: actions/configure-pages@v3
-            - name: update pages
+
+            - name: Upload artifact
               uses: actions/upload-artifact@v4
               with:
                   name: github-pages
-                  path: './docs'
-            - name: Download artifact 
+                  path: './docs' 
+
+            - name: Download artifact
               uses: actions/download-artifact@v4
               with:
                   name: github-pages
-                  path: './docs'
-            - name:  Deploy to GitHub Pages
+                  path: '.'
+
+            - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
