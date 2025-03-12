@@ -31,7 +31,7 @@ jobs:
                   cache: 'yarn'
 
             - name: Install dependencies
-              run: yarn install --frozen-lockfile
+              run: yarn install
 
             - name: Build project
               run: yarn build
@@ -46,7 +46,7 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                   name: github-pages
-                  path: '.'
+                  path: '.' 
 
             - name: Deploy to GitHub Pages
               id: deployment
