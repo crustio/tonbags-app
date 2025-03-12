@@ -104,13 +104,13 @@ const Files = () => {
                             className='w-[57.8125rem]'
                             loading={loading}
                             header={[
-                                { name: 'Name', className: 'min-w-[211px]' },
+                                { name: 'Action', className: 'w-[50px]' },
+                                { name: 'Name', className: 'min-w-[130px] ' },
                                 { name: 'Identifier', className: 'min-w-[161px]' },
                                 { name: 'Mode', className: 'min-w-[61px]' },
                                 { name: 'Size', className: 'min-w-[111px]' },
                                 { name: 'Upload Date', className: 'min-w-[161px]' },
                                 { name: 'From', className: 'min-w-[111px]' },
-                                { name: 'Action', className: 'min-w-[111px]' }
                             ]}
                             data={userData?.data}
                         />
