@@ -37,7 +37,7 @@ jobs:
             - name: set page
               uses: actions/configure-pages@v3
             - name: update pages
-              uses: actions/upload-pages-artifact@v1
+              uses: actions/upload-pages-artifact@v4
               with:
                   path: './docs'
             - name: github-pages
