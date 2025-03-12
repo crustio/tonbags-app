@@ -36,8 +36,8 @@ jobs:
               run: yarn build
             - name: set page
               uses: actions/configure-pages@v3
-            - name: update pages
-              uses: actions/upload-pages-artifact@v1
+            - name: github-pages
+              uses: actions/upload-artifact@v4
               with:
                   path: './docs'
             - name: build to GitHub Pages
