@@ -39,6 +39,7 @@ jobs:
             - name: update pages
               uses: actions/upload-artifact@v4
               with:
+                  name: github-pages
                   path: './docs'
             - name: build to GitHub Pages
               id: deployment
